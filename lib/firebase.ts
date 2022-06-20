@@ -1,9 +1,18 @@
 import { initializeApp, FirebaseApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore/lite";
+import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { GoogleAuthProvider } from "firebase/auth";
+import {
+  collection,
+  DocumentSnapshot,
+  getDocs,
+  limit,
+  query,
+  where,
+  Timestamp,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCNSnQrsbJmNXKmkN5k7-9KcgnZAz1J8mA",
@@ -16,7 +25,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const fireStore = getFirestore(app);
 const storage = getStorage(app);
 
 const googleAuthProvider = new GoogleAuthProvider();
@@ -27,7 +36,33 @@ onAuthStateChanged(auth, (user) => {
   // Check for user status
 });
 
-export { auth, db, storage, googleAuthProvider };
+export { auth, fireStore, storage, googleAuthProvider };
+export const fromMillis = Timestamp.fromMillis;
 
-/* export const firestore = firebaseApp.firestore();
-export const storage = firebaseApp.storage(); */
+/**`
+ * Gets a users/{uid} document with username
+ * @param  {string} username
+ */
+export async function getUserWithUsername(username) {
+  const usersRef = collection(fireStore, "users");
+
+  // Create a query against the collection.
+  const q = query(usersRef, where("username", "==", username), limit(1));
+  const res = (await getDocs(q)).docs[0];
+
+  return res;
+}
+
+/**`
+ * Converts a firestore document to JSON
+ * @param  {DocumentSnapshot} doc
+ */
+export function postToJSON(doc: DocumentSnapshot) {
+  const data = doc.data();
+  return {
+    ...data,
+    // Gotcha! firestore timestamp NOT serializable to JSON. Must convert to milliseconds
+    createdAt: data.createdAt.toMillis(),
+    updatedAt: data.updatedAt.toMillis(),
+  };
+}
