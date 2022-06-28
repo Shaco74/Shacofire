@@ -1,7 +1,7 @@
 import { initializeApp, FirebaseApp } from "firebase/app";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import { Firestore, getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { GoogleAuthProvider } from "firebase/auth";
 import {
@@ -12,6 +12,7 @@ import {
   query,
   where,
   Timestamp,
+  serverTimestamp,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -27,6 +28,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const fireStore = getFirestore(app);
 const storage = getStorage(app);
+/* export const STATE_CHANGED2 = firebase.storage.TaskEvent.STATE_CHANGED;
+export const STATE_CHANGED = storage.TaskEvent */
 
 const googleAuthProvider = new GoogleAuthProvider();
 // const analytics = getAnalytics(app);
@@ -38,6 +41,7 @@ onAuthStateChanged(auth, (user) => {
 
 export { auth, fireStore, storage, googleAuthProvider };
 export const fromMillis = Timestamp.fromMillis;
+export const timestamp = serverTimestamp();
 
 /**`
  * Gets a users/{uid} document with username
