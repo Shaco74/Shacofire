@@ -21,6 +21,7 @@ import {
   serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
+import ImageUploader from "../../components/ImageUploader";
 
 export default function AdminPostEdit() {
   return (
@@ -107,8 +108,9 @@ function PostForm({ defaultValues, postRef, preview }) {
       )}
 
       <div className={preview ? styles.hidden : styles.controls}>
-        <textarea {...contentHook}></textarea>
+        <ImageUploader />
 
+        <textarea {...contentHook}></textarea>
         <fieldset>
           <input
             className={styles.checkbox}

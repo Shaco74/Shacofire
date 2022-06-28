@@ -28,8 +28,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const fireStore = getFirestore(app);
 const storage = getStorage(app);
-/* export const STATE_CHANGED2 = firebase.storage.TaskEvent.STATE_CHANGED;
-export const STATE_CHANGED = storage.TaskEvent */
 
 const googleAuthProvider = new GoogleAuthProvider();
 // const analytics = getAnalytics(app);
