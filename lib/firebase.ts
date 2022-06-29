@@ -13,6 +13,7 @@ import {
   where,
   Timestamp,
   serverTimestamp,
+  increment,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -40,6 +41,7 @@ onAuthStateChanged(auth, (user) => {
 export { auth, fireStore, storage, googleAuthProvider };
 export const fromMillis = Timestamp.fromMillis;
 export const timestamp = serverTimestamp();
+export const firestoreIncrement = (amount: number) => increment(amount);
 
 /**`
  * Gets a users/{uid} document with username
