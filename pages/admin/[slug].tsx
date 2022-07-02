@@ -22,6 +22,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import ImageUploader from "../../components/ImageUploader";
+import { Button } from "@mui/material";
 
 export default function AdminPostEdit() {
   return (
@@ -60,11 +61,17 @@ function PostManager() {
 
           <aside>
             <h3>Tools</h3>
-            <button onClick={() => setPreview(!preview)}>
+            <Button
+              variant="contained"
+              style={{ marginBottom: "5px" }}
+              onClick={() => setPreview(!preview)}
+            >
               {preview ? "Edit" : "Preview"}
-            </button>
+            </Button>
             <Link href={`/${post.username}/${post.slug}`}>
-              <button className="btn-blue">Live view</button>
+              <Button variant="contained" className="btn-blue">
+                Live view
+              </Button>
             </Link>
           </aside>
         </>

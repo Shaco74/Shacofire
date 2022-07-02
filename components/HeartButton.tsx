@@ -1,6 +1,7 @@
 import { fireStore, auth, firestoreIncrement } from "../lib/firebase";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { collection, doc, writeBatch } from "firebase/firestore";
+import { Button } from "@mui/material";
 
 // Allows user to heart or like a post
 export default function Heart({ postRef }) {
@@ -35,9 +36,27 @@ export default function Heart({ postRef }) {
 
   const toggleHeartButton = () => {
     if (heartDoc?.exists()) {
-      return <button onClick={removeHeart}>💔 Unheart</button>;
+      return (
+        <Button
+          variant="contained"
+          size="large"
+          onClick={removeHeart}
+          style={{ width: "max-content" }}
+        >
+          💔 Unheart
+        </Button>
+      );
     } else {
-      return <button onClick={addHeart}>💗 Heart</button>;
+      return (
+        <Button
+          variant="contained"
+          size="large"
+          onClick={addHeart}
+          style={{ width: "max-content", margin: "0px" }}
+        >
+          💗 Heart
+        </Button>
+      );
     }
   };
 

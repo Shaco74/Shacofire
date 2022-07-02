@@ -41,6 +41,7 @@ function SignInButton() {
       size="large"
       color="secondary"
       onClick={signInWithGoogle}
+      className="btn-google"
       style={{ gap: "0.5rem" }}
     >
       <Image
@@ -56,7 +57,11 @@ function SignInButton() {
 
 // Sign out button
 function SignOutButton() {
-  return <button onClick={() => auth.signOut()}>Sign Out</button>;
+  return (
+    <Button variant="contained" size="large" onClick={() => auth.signOut()}>
+      Sign Out
+    </Button>
+  );
 }
 
 // Username form

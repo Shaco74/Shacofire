@@ -14,6 +14,7 @@ import PostContent from "../../components/PostContent";
 import AuthCheck from "../../components/AuthCheck";
 import Link from "next/link";
 import HeartButton from "../../components/HeartButton";
+import { Button, Card } from "@mui/material";
 
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
@@ -72,21 +73,23 @@ export default function Post(props) {
         <PostContent post={post} />
       </section>
 
-      <aside className="card">
-        <p>
+      <Card style={{ height: "fit-content" }} className="card">
+        <p style={{ textAlign: "center" }}>
           <strong>{post.heartCount || 0} 🤍</strong>
         </p>
 
         <AuthCheck
           fallback={
             <Link href="/enter">
-              <button>💗 Sign Up</button>
+              <Button variant="contained" style={{ width: "max-content" }}>
+                💗 Sign Up
+              </Button>
             </Link>
           }
         >
           <HeartButton postRef={postRef} />
         </AuthCheck>
-      </aside>
+      </Card>
     </main>
   );
 }
