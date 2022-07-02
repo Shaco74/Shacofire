@@ -16,6 +16,7 @@ import Link from "next/link";
 import HeartButton from "../../components/HeartButton";
 import { Button, Card } from "@mui/material";
 
+
 export async function getStaticProps({ params }) {
   const { username, slug } = params;
   console.log("slug");
@@ -90,6 +91,7 @@ export default function Post(props) {
           <HeartButton postRef={postRef} />
         </AuthCheck>
       </Card>
+      </aside>
     </main>
   );
 }

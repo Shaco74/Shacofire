@@ -3,6 +3,7 @@ import { useDocument } from "react-firebase-hooks/firestore";
 import { collection, doc, writeBatch } from "firebase/firestore";
 import { Button } from "@mui/material";
 
+
 // Allows user to heart or like a post
 export default function Heart({ postRef }) {
   // Listen to heart document for currently logged in user
