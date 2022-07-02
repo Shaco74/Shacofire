@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useContext } from "react";
 import { UserContext } from "../lib/context";
+import { Button } from "@mui/material";
 
 export default function Navbar() {
   const { user, username } = useContext(UserContext);
@@ -19,7 +20,13 @@ export default function Navbar() {
           <>
             <li className="push-left">
               <Link href="/admin">
-                <button className="btn-blue">Write Posts</button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  style={{ margin: "1rem " }}
+                >
+                  Write Posts
+                </Button>
               </Link>
             </li>
             <li>
