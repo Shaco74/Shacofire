@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useContext } from "react";
 import { UserContext } from "../lib/context";
+import { Button } from "@mui/material";
 
 export default function Navbar() {
   const { user, username } = useContext(UserContext);
@@ -10,7 +11,7 @@ export default function Navbar() {
       <ul>
         <li>
           <Link href="/">
-            <button className="btn-logo">FEED</button>
+            <Button className="btn-logo">FEED</Button>
           </Link>
         </li>
 
@@ -19,15 +20,19 @@ export default function Navbar() {
           <>
             <li className="push-left">
               <Link href="/admin">
-                <button className="btn-blue">Write Posts</button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  style={{ margin: "1rem " }}
+                >
+                  Write Posts
+                </Button>
               </Link>
             </li>
             <li>
               <Link href={`/${username}`}>
-                {/* <Image src={user?.photoURL} alt="User Profilepicture"></Image> */}
-                {/* TODO: fix img -> Image */}
                 <Image
-                  src={user?.photoURL}
+                  src={user?.photoURL ? user.photoURL : "/noProfilePicture.jpg"}
                   width={50}
                   height={50}
                   alt="User Profilepicture"
@@ -41,7 +46,9 @@ export default function Navbar() {
         {!username && (
           <li>
             <Link href="/enter">
-              <button className="btn-blue">Log in</button>
+              <Button variant="contained" size="large" className="btn-blue">
+                Log in
+              </Button>
             </Link>
           </li>
         )}

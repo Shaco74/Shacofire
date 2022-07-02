@@ -13,6 +13,7 @@ import {
   startAfter,
 } from "firebase/firestore";
 import Metatags from "../components/Metatags";
+import { Button } from "@mui/material";
 // Max post to query per page
 const LIMIT = 10;
 
@@ -68,7 +69,15 @@ export default function Home(props) {
       <PostFeed posts={posts} admin={props.admin} />
 
       {!loading && !postsEnd && (
-        <button onClick={getMorePosts}>Load more</button>
+        <Button
+          variant="contained"
+          size="large"
+          color="primary"
+          style={{ margin: "1rem 0rem 1rem 0rem" }}
+          onClick={getMorePosts}
+        >
+          Load more
+        </Button>
       )}
 
       <Loader show={loading} />

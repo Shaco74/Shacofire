@@ -19,6 +19,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import PostList from "../../components/PostsList";
+import { Button } from "@mui/material";
 
 export default function AdminPostsPage(props) {
   const [posts, setPosts] = useState<any>();
@@ -106,9 +107,14 @@ function CreateNewPost() {
       <p>
         <strong>Slug:</strong> {slug}
       </p>
-      <button type="submit" disabled={!isValid} className="btn-green">
+      <Button
+        type="submit"
+        variant="contained"
+        disabled={!isValid}
+        className="btn-green"
+      >
         Create New Post
-      </button>
+      </Button>
     </form>
   );
 }

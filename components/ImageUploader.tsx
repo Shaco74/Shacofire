@@ -2,6 +2,7 @@ import { ChangeEventHandler, useState } from "react";
 import { auth, storage } from "../lib/firebase";
 import Loader from "./Loader";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { Button, Input, InputLabel } from "@mui/material";
 
 // Uploads images to Firebase Storage
 export default function ImageUploader() {
@@ -60,14 +61,14 @@ export default function ImageUploader() {
 
       {!uploading && (
         <>
-          <label className="btn">
+          <InputLabel className="btn">
             📸 Upload Img
-            <input
+            <Input
               type="file"
               onChange={uploadFile}
-              accept="image/x-png,image/gif,image/jpeg"
+              inputProps={{ accept: "image/x-png,image/gif,image/jpeg" }}
             />
-          </label>
+          </InputLabel>
         </>
       )}
 

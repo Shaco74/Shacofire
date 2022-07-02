@@ -1,3 +1,4 @@
+import { Box, Button, Paper } from "@mui/material";
 import Link from "next/link";
 
 export default function PostFeed({ posts, admin }) {
@@ -14,7 +15,16 @@ function PostItem({ post, admin = false }) {
   const minutesToRead = (wordCount / 100 + 1).toFixed(0);
 
   return (
-    <div className="card">
+    <Box
+      component={Paper}
+      style={{
+        marginTop: "20px",
+        marginBottom: "20px",
+        padding: "25px",
+        borderRadius: "10px",
+        boxShadow: "1px 1px 10px rgba(0, 0, 0, 0.1)",
+      }}
+    >
       <Link href={`/${post.username}`}>
         <a>
           <strong>By @{post.username}</strong>
@@ -28,10 +38,18 @@ function PostItem({ post, admin = false }) {
       </Link>
 
       <footer>
-        <span>
-          {wordCount} words. {minutesToRead} min read
-        </span>
-        <span className="push-left">💗 {post.heartCount || 0} Hearts</span>
+        <Box
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            display: "flex",
+          }}
+        >
+          <span>
+            {wordCount} words. {minutesToRead} min read
+          </span>
+          <span className="push-left">💗 {post.heartCount || 0} Hearts</span>
+        </Box>
       </footer>
 
       {/* If admin view, show extra controls for user */}
@@ -39,7 +57,9 @@ function PostItem({ post, admin = false }) {
         <>
           <Link href={`/admin/${post.slug}`}>
             <h3>
-              <button className="btn-blue">Edit</button>
+              <Button variant="contained" size="large" color="primary">
+                Edit
+              </Button>
             </h3>
           </Link>
 
@@ -50,6 +70,6 @@ function PostItem({ post, admin = false }) {
           )}
         </>
       )}
-    </div>
+    </Box>
   );
 }

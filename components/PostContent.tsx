@@ -1,3 +1,4 @@
+import { Card } from "@mui/material";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
@@ -9,7 +10,7 @@ export default function PostContent({ post }) {
       : post.createdAt.toDate();
 
   return (
-    <div className="card">
+    <Card className="card">
       <h1>{post?.title}</h1>
       <span className="text-sm">
         Written by{" "}
@@ -19,6 +20,6 @@ export default function PostContent({ post }) {
         on {createdAt.toISOString()}
       </span>
       <ReactMarkdown>{post?.content}</ReactMarkdown>
-    </div>
+    </Card>
   );
 }

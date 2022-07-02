@@ -6,6 +6,7 @@ import debounce from "lodash.debounce";
 import { UserContext } from "../lib/context";
 import { fireStore } from "../lib/firebase";
 import { doc, getDoc, writeBatch } from "firebase/firestore";
+import { Button } from "@mui/material";
 
 export default function Enter(props) {
   const { user, username } = useContext(UserContext);
@@ -35,7 +36,14 @@ function SignInButton() {
   };
 
   return (
-    <button className="btn-google" onClick={signInWithGoogle}>
+    <Button
+      variant="contained"
+      size="large"
+      color="secondary"
+      onClick={signInWithGoogle}
+      className="btn-google"
+      style={{ gap: "0.5rem" }}
+    >
       <Image
         height={30}
         width={30}
@@ -43,13 +51,17 @@ function SignInButton() {
         alt="Sign in with Google Logo"
       />{" "}
       Sign in with Google
-    </button>
+    </Button>
   );
 }
 
 // Sign out button
 function SignOutButton() {
-  return <button onClick={() => auth.signOut()}>Sign Out</button>;
+  return (
+    <Button variant="contained" size="large" onClick={() => auth.signOut()}>
+      Sign Out
+    </Button>
+  );
 }
 
 // Username form
@@ -135,18 +147,16 @@ function UsernameForm() {
             isValid={isValid}
             loading={loading}
           />
-          <button type="submit" className="btn-green" disabled={!isValid}>
+          <Button
+            style={{ margin: "1rem 0rem 1rem 0rem" }}
+            variant="contained"
+            size="large"
+            color="primary"
+            type="submit"
+            disabled={!isValid}
+          >
             Choose
-          </button>
-
-          <h3>Debug State</h3>
-          <div>
-            Username: {formValue}
-            <br />
-            Loading: {loading.toString()}
-            <br />
-            Username Valid: {isValid.toString()}
-          </div>
+          </Button>
         </form>
       </section>
     )
