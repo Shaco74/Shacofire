@@ -16,10 +16,10 @@ body {
   font-family: "Roboto", "Noto Sans", sans-serif;
   background-color: var(--color-bg);
   color: var(--color-text);
-  margin-top: 50px;
 }
 
 main {
+  margin-top: 70px;
   padding: 1rem 10vw;
 }
 
